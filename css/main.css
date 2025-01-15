@@ -1,0 +1,63 @@
+/* 设置h1居中 */
+.center {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* 卡片样式 */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.card h2 {
+    margin-top: 5px;  /* 设置设备名称与卡片顶部的间距 */
+    margin-bottom: 10px;  /* 设置设备名称与下方内容的间距 */
+    font-size: 1.5rem;  /* 设置字体大小 */
+}
+
+/* 鼠标悬停时，卡片浮动效果 */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 卡片中有空闲桩时，背景为淡绿色 */
+.has-idle {
+    background-color: #e0f8e0d0; /* 淡绿色背景 */
+}
+
+.has-no-idle {
+    background-color: #fde2e2c1; /* 淡红色 */
+}
+
+/* 不同状态下的文本颜色 */
+.green {
+    color: #0d5721;
+}
+
+.orange {
+    color: #f39c12;
+}
+
+.red {
+    color: #e74c3c;
+}
+
+
+/* 设置footer文字样式 */
+footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.footer-text {
+    color: #888;
+    font-size: 0.875rem;
+    font-style: italic;
+}

@@ -20,10 +20,10 @@ const headers = {
 
 async function getWorkingStateCount(deviceCode) {
     const url = urlTemplate.replace("{key}", deviceCode);
-    
+
     try {
         const response = await axios.get(url, { headers });
-        
+
         if (response.status !== 200) {
             console.log(`请求失败，设备编号: ${deviceCode}`);
             return null;
@@ -54,58 +54,36 @@ async function main() {
     cardContainer.innerHTML = ''; // Clear previous results
 
     for (const device of deviceDicts) {
-        // const { device_name, device_code } = device;
-        // const stateCount = await getWorkingStateCount(device_code);
-        
-        // if (stateCount) {
-        //     const row = document.createElement('tr');
+        const { device_name, device_code } = device;
+        const stateCount = await getWorkingStateCount(device_code);
 
-        //     // Create columns for device name, idle count, charging count, and error count
-        //     const deviceNameCell = document.createElement('td');
-        //     deviceNameCell.textContent = device_name;
-        //     row.appendChild(deviceNameCell);
+        if (stateCount) {
 
-        //     const idleCountCell = document.createElement('td');
-        //     idleCountCell.textContent = stateCount['IDLE'];
-        //     if (stateCount['IDLE'] > 0) {
-        //         idleCountCell.classList.add('green');
-        //     }
-        //     row.appendChild(idleCountCell);
+            const card = document.createElement('div');
+            card.classList.add('card'); // 添加卡片样式
 
-        //     const chargingCountCell = document.createElement('td');
-        //     chargingCountCell.textContent = stateCount['CHARGING'];
-        //     row.appendChild(chargingCountCell);
+            // 根据设备是否有空闲桩，添加相应的类
+            if (stateCount['IDLE'] > 0) {
+                // 模拟随机情况，有空闲桩
+                card.classList.add('has-idle');
+            } else {
+                // 模拟没有空闲桩
+                card.classList.add('has-no-idle');
+            }
 
-        //     const errorCountCell = document.createElement('td');
-        //     errorCountCell.textContent = stateCount['ERROR'];
-        //     row.appendChild(errorCountCell);
+            // 创建卡片内容
+            card.innerHTML = `
+                <h2>${device_name}</h2>
+                <p>设备编号: ${device_code}</p>
+                <p>空闲充电桩：${stateCount['IDLE']}</p>
+                <p>运行中充电桩：${stateCount['CHARGING']}</p>
+                <p>损坏充电桩：${stateCount['ERROR']}</p>
+            `;
 
-        //     // Append the row to the table body
-        //     resultsTableBody.appendChild(row);
-        // }
-
-        const card = document.createElement('div');
-        card.classList.add('card'); // 添加卡片样式
-
-        // 根据设备是否有空闲桩，添加相应的类
-        if (Math.random() > 0.5) {
-            // 模拟随机情况，有空闲桩
-            card.classList.add('has-idle');
-        } else {
-            // 模拟没有空闲桩
-            card.classList.add('has-no-idle');
+            // 将卡片添加到卡片容器中
+            cardContainer.appendChild(card);
         }
-
-        // 创建卡片内容
-        card.innerHTML = `
-            <h2>${device.device_name}</h2>
-            <p>设备编号: ${device.device_code}</p>
-            <p class="${Math.random() > 0.5 ? 'green' : 'red'}">${Math.random() > 0.5 ? '空闲' : '忙碌'}</p>
-        `;
-
-        // 将卡片添加到卡片容器中
-        cardContainer.appendChild(card);
-        }
+    }
 }
 
 // Call main when the page is fully loaded

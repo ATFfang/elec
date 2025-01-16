@@ -3,7 +3,12 @@ const urlTemplate = "https://ev.acrel-eem.com/charging/pile/get_ev_pile_by_devic
 const deviceDicts = [
     { device_name: "河口海岸东南侧3", device_code: 2022001695 },
     { device_name: "河口海岸东南侧2", device_code: 2022001694 },
-    { device_name: "河口海岸东南侧1", device_code: 2022001699 }
+    { device_name: "河口海岸东南侧1", device_code: 2022001699 },
+    { device_name: "研究生公寓17号楼1号", device_code: 2240418151 },
+    { device_name: "研究生公寓17号楼2号", device_code: 2240418154 },
+    { device_name: "研究生公寓17号楼3号", device_code: 2240418153 },
+    { device_name: "资源与环境馆外西侧车棚2号", device_code: 2022001696 },
+    { device_name: "资源与环境馆外西侧车棚1号", device_code: 2022001698 }
 ];
 
 const headers = {
